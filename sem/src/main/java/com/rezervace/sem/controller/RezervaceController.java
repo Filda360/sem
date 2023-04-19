@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/rezervace")
+@CrossOrigin(origins = {"http://localhost:5173/"})
 public class RezervaceController {
     @Autowired
     private ModelMapper modelMapper;

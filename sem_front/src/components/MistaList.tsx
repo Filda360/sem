@@ -1,13 +1,12 @@
 import {useState} from "react";
 import RevirSelect from "./RevirSelect";
+import {Revir} from "../data/Revir";
 
 interface Props {
-    items: String;
+    revir: Revir
 }
 
 function MistaList() {
-    const [revir, setRevir] = useState();
-
     return <>
         <h1>Lovné místa</h1>
         <div className="list-group">

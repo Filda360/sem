@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/mista")
+@CrossOrigin(origins = {"http://localhost:5173/"})
 public class MistoController {
     @Autowired
     private ModelMapper modelMapper;
