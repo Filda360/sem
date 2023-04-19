@@ -9,7 +9,6 @@ interface Props{
 function RevirSelect({onSelectRevir}:Props){
 
     const [reviry, setReviry] = useState<Revir[]>([]);
-    const [selected, setSelected] = useState(reviry[0]);
 
     const getReviry = async () => {
         const backendUrl = "http://localhost:8080/reviry";
