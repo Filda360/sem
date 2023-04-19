@@ -1,15 +1,14 @@
+import {useState} from "react";
+import RevirSelect from "./RevirSelect";
+
 interface Props {
     items: String;
 }
 
 function MistaList() {
+    const [revir, setRevir] = useState();
+
     return <>
-        <h3>Revír</h3>
-        <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" defaultValue={'1'}>
-            <option value="0">Velký</option>
-            <option value="1">Postřední</option>
-            <option value="2">Malý</option>
-        </select>
         <h1>Lovné místa</h1>
         <div className="list-group">
             <a href="#" className="list-group-item list-group-item-action active" aria-current="true">
@@ -28,6 +27,7 @@ function MistaList() {
                 <small className="text-body-secondary">And some muted small print.</small>
             </a>
         </div>
+
     </>
 }
 
