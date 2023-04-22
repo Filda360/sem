@@ -14,6 +14,8 @@ public class UzivatelOutputDtoAll {
 
     private String prijmeni;
 
+    private String username;
+
     private String adresa;
 
     private String telefon;

@@ -1,15 +1,27 @@
-
 import './App.css'
-import MistaList from "./components/MistaList";
 import NavBar from "./components/NavBar";
-import RevirSelect from "./components/RevirSelect";
-import ReservationCreate from "./components/ReservationCreate";
+import ReservationsOffer from "./components/ReservationsOffer";
+import VytvoritRezervaci from "./pages/VytvoritRezervaci";
+import MojeRezervace from "./pages/MojeRezervace";
+import Home from "./pages/Home";
 
 function App() {
- return <>
-     <NavBar/>
-    <ReservationCreate/>
- </>
+    let component
+    switch (window.location.pathname){
+        case "/VytvoritRezervaci":
+            component = <VytvoritRezervaci/>
+            break
+        case "/MojeRezervace":
+            component = <MojeRezervace/>
+            break
+        case "/Home":
+            component = <Home/>
+            break
+    }
+    return <>
+        <NavBar/>
+        {component}
+    </>
 }
 
 export default App

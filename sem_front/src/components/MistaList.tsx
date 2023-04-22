@@ -1,30 +1,60 @@
-import {useState} from "react";
-import RevirSelect from "./RevirSelect";
-import {Revir} from "../data/Revir";
+import {RevirData} from "../data/RevirData";
+import {MistoData} from "../data/MistoData";
+import axios from "axios";
+import {useEffect, useState} from "react";
 
 interface Props {
-    revir: Revir
+    revir: RevirData | undefined
 }
 
-function MistaList() {
+function MistaList({revir}: Props) {
+    const [mista, setMista] = useState<MistoData[]>([]);
+
+    const getMista = async () => {
+        var backendUrl = ""
+        if (revir === undefined) {
+            backendUrl = "http://localhost:8080/mista";
+        } else {
+            backendUrl = "http://localhost:8080/mista?revir=" + revir?.nazev;
+        }
+        let res = null;
+        try {
+            res = await axios.get(backendUrl);
+        } catch (e: any) {
+            setMista([]);
+        }
+        if (res) {
+            const mista = await res.data;
+            setMista(mista);
+        }
+    }
+
+    useEffect(
+        () => {
+            getMista();
+        }, [revir]
+    )
+
+    const clickRezervovatHandler = (index: number) => {
+        console.log(mista[index].nazev);
+    }
+
     return <>
-        <h1>Lovné místa</h1>
-        <div className="list-group">
-            <a href="#" className="list-group-item list-group-item-action active" aria-current="true">
-                <div className="d-flex w-100 justify-content-between">
-                    <h5 className="mb-1">Lovné místo 1</h5>
+        <div className="row row-cols-1 row-cols-md-2 g-4">
+            {mista.map((misto, index) => (
+                <div className="col" key={index}>
+                    <div className="card h-100">
+                        <img src="/src/components/10middle.jpg" className="card-img-top" alt="..."/>
+                        <div className="card-body">
+                            <h5 className="card-title">{misto.nazev}</h5>
+                            <p className="card-text">{misto.popis}</p>
+                        </div>
+                        <div className="card-footer">
+                            <button className="btn btn-success" onClick={() => clickRezervovatHandler(index)}>Rezervovat</button>
+                        </div>
+                    </div>
                 </div>
-                <p className="mb-1">Some placeholder content in a paragraph.</p>
-                <button type="button" className="btn btn-success">Rezervovat</button>
-            </a>
-            <a href="#" className="list-group-item list-group-item-action">
-                <div className="d-flex w-100 justify-content-between">
-                    <h5 className="mb-1">Lovné místo 2</h5>
-                    <small className="text-body-secondary">3 days ago</small>
-                </div>
-                <p className="mb-1">Some placeholder content in a paragraph.</p>
-                <small className="text-body-secondary">And some muted small print.</small>
-            </a>
+            ))}
         </div>
 
     </>

@@ -2,7 +2,7 @@ function NavBar() {
     return<>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#">Home</a>
+                <a className="navbar-brand" href="/Home">Home</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -10,13 +10,10 @@ function NavBar() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Rezervace</a>
+                            <a className="nav-link active" aria-current="page" href="/VytvoritRezervaci">Vytvořit rezervaci</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Revíry</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Mista</a>
+                            <a className="nav-link" href="/MojeRezervace">Moje Rezervace</a>
                         </li>
                     </ul>
                 </div>

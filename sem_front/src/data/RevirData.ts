@@ -1,4 +1,4 @@
-export interface Revir {
+export interface RevirData {
     id: number
     nazev: String
 

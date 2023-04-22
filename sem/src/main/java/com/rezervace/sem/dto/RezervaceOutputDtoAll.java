@@ -22,8 +22,4 @@ public class RezervaceOutputDtoAll {
 
     private Boolean stav_platby;
 
-    @JsonBackReference
-    private Uzivatel uzivatel;
-    @JsonBackReference
-    private Misto misto;
 }

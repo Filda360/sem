@@ -1,6 +1,10 @@
 package com.rezervace.sem.dto;
 
+import com.rezervace.sem.model.Revir;
 import lombok.*;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Data
 @Getter
@@ -17,4 +21,5 @@ public class MistoOutputDtoAll {
     private String popis;
 
     private String obrazek;
+
 }
