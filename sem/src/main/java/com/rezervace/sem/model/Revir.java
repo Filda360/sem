@@ -20,6 +20,7 @@ public class Revir {
     private String popis;
 
 
-    @OneToMany(mappedBy = "revir", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "revir", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonBackReference
     private Set<Misto> mista_reviru;
 }

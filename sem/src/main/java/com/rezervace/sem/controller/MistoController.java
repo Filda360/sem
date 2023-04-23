@@ -7,6 +7,8 @@ import com.rezervace.sem.exception.ResourceNotFoundException;
 import com.rezervace.sem.model.Misto;
 import com.rezervace.sem.service.MistoService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
+import org.modelmapper.spi.MatchingStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,10 +28,16 @@ import java.util.stream.Collectors;
 @RequestMapping("/mista")
 @CrossOrigin(origins = {"http://localhost:5173/"})
 public class MistoController {
-    @Autowired
+    //@Autowired
     private ModelMapper modelMapper;
-    @Autowired
+    //@Autowired
     private MistoService mistoService;
+
+    public MistoController(ModelMapper modelMapper, MistoService mistoService) {
+        this.modelMapper = modelMapper;
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
+        this.mistoService = mistoService;
+    }
 
     @PostMapping
     public void pridejMisto(@Valid @RequestBody MistoInputDto misto) {

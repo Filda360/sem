@@ -22,4 +22,8 @@ public class RezervaceOutputDtoAll {
 
     private Boolean stav_platby;
 
+    private UzivatelOutputDtoAll uzivatel;
+
+    private MistoOutputDtoAll misto;
+
 }

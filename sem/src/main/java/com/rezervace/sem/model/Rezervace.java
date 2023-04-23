@@ -28,10 +28,12 @@ public class Rezervace {
 
     @ManyToOne
     @JoinColumn(name = "idUzivatele")
+    @JsonManagedReference
     private Uzivatel uzivatel;
 
 
     @ManyToOne
     @JoinColumn(name = "idMista")
+    @JsonManagedReference
     private Misto misto;
 }

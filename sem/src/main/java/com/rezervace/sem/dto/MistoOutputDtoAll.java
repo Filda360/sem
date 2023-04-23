@@ -22,4 +22,5 @@ public class MistoOutputDtoAll {
 
     private String obrazek;
 
+    private RevirOutputDtoAll revir;
 }

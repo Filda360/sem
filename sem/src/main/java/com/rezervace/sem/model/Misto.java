@@ -1,5 +1,6 @@
 package com.rezervace.sem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,10 +28,12 @@ public class Misto {
 
 
     @OneToMany(mappedBy = "misto", cascade = CascadeType.REMOVE)
+    @JsonBackReference
     private Set<Rezervace> rezervace;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idReviru")
+    @JsonManagedReference
     private Revir revir;
 }
