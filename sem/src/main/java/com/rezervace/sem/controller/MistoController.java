@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +40,7 @@ public class MistoController {
         this.mistoService = mistoService;
     }
 
-    @PostMapping
+    @PostMapping()
     public void pridejMisto(@Valid @RequestBody MistoInputDto misto) {
         Misto mis = modelMapper.map(misto, Misto.class);
         mistoService.create(mis);

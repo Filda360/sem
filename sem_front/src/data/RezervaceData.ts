@@ -1,3 +1,5 @@
+import {MistoData} from "./MistoData";
+
 export interface RezervaceData{
     zacatek: Date;
 
@@ -8,4 +10,6 @@ export interface RezervaceData{
     poznamka: String;
 
     stav_platby: Boolean;
+
+    misto: MistoData;
 }

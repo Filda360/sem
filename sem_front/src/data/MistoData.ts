@@ -1,3 +1,4 @@
+import {RevirData} from "./RevirData";
 
 export interface MistoData {
     nazev: String
@@ -7,4 +8,6 @@ export interface MistoData {
     popis: String
 
     obrazek: String;
+
+    revir: RevirData;
 }

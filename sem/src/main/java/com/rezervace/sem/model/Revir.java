@@ -1,7 +1,5 @@
 package com.rezervace.sem.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,6 +19,6 @@ public class Revir {
 
 
     @OneToMany(mappedBy = "revir", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JsonBackReference
+    //@JsonBackReference
     private Set<Misto> mista_reviru;
 }

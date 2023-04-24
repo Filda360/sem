@@ -1,11 +1,11 @@
 package com.rezervace.sem.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -32,7 +32,7 @@ public class Uzivatel {
     @Column
     private String password;
 
-    @OneToMany(mappedBy = "uzivatel", cascade = CascadeType.REMOVE)
-    @JsonBackReference
+    @OneToMany(mappedBy = "uzivatel", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    //@JsonBackReference("uzivatel")
     private Set<Rezervace> rezervace;
 }

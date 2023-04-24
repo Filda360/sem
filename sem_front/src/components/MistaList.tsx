@@ -46,8 +46,9 @@ function MistaList({revir}: Props) {
                     <div className="card h-100">
                         <img src="/src/components/10middle.jpg" className="card-img-top" alt="..."/>
                         <div className="card-body">
-                            <h5 className="card-title">{misto.nazev}</h5>
+                            <h4 className="card-title">{misto.nazev}</h4>
                             <p className="card-text">{misto.popis}</p>
+                            <h5 className="card-title">{misto.cena} Kč/den</h5>
                         </div>
                         <div className="card-footer">
                             <button className="btn btn-success" onClick={() => clickRezervovatHandler(index)}>Rezervovat</button>

@@ -16,18 +16,17 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RezervaceInputDto {
-    @NotBlank
+    @NotNull
     private LocalDateTime zacatek;
 
-    @NotBlank
+    @NotNull
     private LocalDateTime konec;
 
-    @NotBlank
-    @Min(1)
-    @Max(3)
     private Integer pocetRybaru;
 
     private String poznamka;
+
+    private Boolean stavPlatby;
     @NotNull
     private Uzivatel uzivatel;
     @NotNull

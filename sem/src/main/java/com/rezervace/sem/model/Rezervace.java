@@ -1,7 +1,5 @@
 package com.rezervace.sem.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -26,14 +24,14 @@ public class Rezervace {
     private Boolean stavPlatby;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idUzivatele")
-    @JsonManagedReference
+    //@JsonManagedReference("uzivatel")
     private Uzivatel uzivatel;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idMista")
-    @JsonManagedReference
+    //@JsonManagedReference("misto")
     private Misto misto;
 }

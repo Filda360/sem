@@ -1,11 +1,10 @@
 package com.rezervace.sem.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -27,13 +26,12 @@ public class Misto {
     private String obrazek;
 
 
-    @OneToMany(mappedBy = "misto", cascade = CascadeType.REMOVE)
-    @JsonBackReference
+    @OneToMany(mappedBy = "misto", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    //@JsonBackReference("misto")
     private Set<Rezervace> rezervace;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idReviru")
-    @JsonManagedReference
     private Revir revir;
 }

@@ -28,8 +28,17 @@ function ReservationsList(){
 
     return<>
         <div className="list-group">
-            {rezervace.map((rez, index) => (<a href="#" className="list-group-item list-group-item-action">
-                    {rez.zacatek.toString()} - {rez.konec.toString()} : {rez.pocetRybaru}
+            {rezervace.map((rez, index) => (<a href="#" className="list-group-item list-group-item-action" key={index}>
+                <h5>
+                    {rez.misto.revir.nazev} | {rez.misto.nazev}
+                </h5>
+                <h5>
+                    od: {new Date(Date.parse(rez.zacatek.toString())).toLocaleDateString()}
+                </h5>
+                <h5>
+                    do: {new Date(Date.parse(rez.konec.toString())).toLocaleDateString()}
+                </h5>
+                <button className="btn btn-danger">Zrušit</button>
                 </a>))}
         </div>
     </>
