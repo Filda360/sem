@@ -4,16 +4,25 @@ import Modal from 'react-bootstrap/Modal';
 import Form from "react-bootstrap/Form";
 import {Col, Row} from "react-bootstrap";
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { addDays } from 'date-fns';
+import { subDays } from 'date-fns';
 
 function Home(){
     const [show, setShow] = useState(false);
-    const [date, setDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date());
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     return (
         <>
+            <DatePicker
+                onChange={(date: Date) => setStartDate(date)}
+                excludeDateIntervals={[{start: subDays(new Date(), 5), end: addDays(new Date(), 5) }]}
+            />
+
             <Button variant="primary" onClick={handleShow}>
                 Show calendar
             </Button>

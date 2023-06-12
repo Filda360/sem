@@ -13,7 +13,7 @@ function ReservationsOffer(){
     }
 
     return <>
-        <h1>Lovné místa</h1>
+        <h1>Rezervace míst</h1>
         <RevirSelect onSelectRevir={onRevirSelected}/>
         <MistaList revir={revir}/>
     </>
