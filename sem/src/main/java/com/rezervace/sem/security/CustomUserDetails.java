@@ -32,6 +32,10 @@ public class CustomUserDetails implements UserDetails {
         return uzivatel.getUsername();
     }
 
+    public String getJmeno(){ return uzivatel.getJmeno();}
+
+    public String getPrijmeni(){return uzivatel.getPrijmeni();}
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

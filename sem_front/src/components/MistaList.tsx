@@ -44,7 +44,7 @@ function MistaList({revir}: Props) {
             {mista.map((misto, index) => (
                 <div className="col" key={index}>
                     <div className="card h-100">
-                        <img src="/src/components/10middle.jpg" className="card-img-top" alt="..."/>
+                        <img src={"https://drive.google.com/uc?export=view&id=" + misto.obrazek} className="card-img-top" alt="obrázek místa"/>
                         <div className="card-body">
                             <h4 className="card-title">{misto.nazev}</h4>
                             <p className="card-text">{misto.popis}</p>
