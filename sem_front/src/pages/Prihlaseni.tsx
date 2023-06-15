@@ -8,9 +8,6 @@ function Prihlaseni() {
 
     const [formData, setFormData] = useState({username: "", password: ""})
 
-    const login = () => {
-        getJWT();
-    }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({...formData, [e.target.name]: e.target.value})
@@ -61,7 +58,7 @@ function Prihlaseni() {
                            className="form-control"/>
                     <label className="form-label" htmlFor="form2Example2">Heslo</label>
                 </div>
-                <button type="button" onClick={login} className="btn btn-primary btn-block mb-4">Přihlásit se</button>
+                <button type="button" onClick={getJWT} className="btn btn-primary btn-block mb-4">Přihlásit se</button>
             </form>
         </div>
     </>
