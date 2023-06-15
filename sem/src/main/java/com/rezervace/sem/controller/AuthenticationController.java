@@ -2,6 +2,7 @@ package com.rezervace.sem.controller;
 
 import com.rezervace.sem.dto.AuthenticationRequest;
 import com.rezervace.sem.dto.AuthenticationResponse;
+import com.rezervace.sem.dto.UzivatelOutputDtoAll;
 import com.rezervace.sem.dto.UzivatelOutputShort;
 import com.rezervace.sem.security.CustomUserDetails;
 import com.rezervace.sem.security.JWTTokenHelper;
@@ -19,10 +20,11 @@ import org.springframework.web.bind.annotation.*;
 import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
 import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/login")
-@CrossOrigin
+@CrossOrigin(origins = {"http://localhost:5173/"})
 public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -53,15 +55,17 @@ public class AuthenticationController {
     }
 
     @GetMapping("/userinfo")
-    @Secured("ROLE_VIEWER")
     public ResponseEntity<?> getUserInfo(Principal user){
         CustomUserDetails userObj=(CustomUserDetails) userDetailsService.loadUserByUsername(user.getName());
 
-        UzivatelOutputShort userInfo=new UzivatelOutputShort();
+        UzivatelOutputDtoAll userInfo=new UzivatelOutputDtoAll();
         userInfo.setJmeno(userObj.getJmeno());
         userInfo.setPrijmeni(userObj.getPrijmeni());
         userInfo.setUsername(userObj.getUsername());
-        userInfo.setRole(userObj.getAuthorities().toArray());
+        userInfo.setAdresa(userObj.getAdresa());
+        userInfo.setTelefon(userObj.getTelefon());
+        userInfo.setEmail(userObj.getEmail());
+        userInfo.setRole(userObj.getAuthorities().toArray()[0].toString());
 
         return ResponseEntity.ok(userInfo);
     }

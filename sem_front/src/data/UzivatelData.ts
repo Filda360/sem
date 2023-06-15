@@ -2,5 +2,7 @@
 export interface UzivatelData {
     jmeno: String;
 
-    prijmeni: String
+    prijmeni: String;
+
+    username: String ;
 }

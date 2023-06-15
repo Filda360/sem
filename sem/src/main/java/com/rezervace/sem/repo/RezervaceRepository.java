@@ -9,8 +9,11 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface RezervaceRepository extends PagingAndSortingRepository<Rezervace, Long> {
     public Page<Rezervace> findRezervacesByUzivatel_Username(String username, Pageable pageable);
+
+    public List<Rezervace> findAllByUzivatel_Jmeno(String username);
 }

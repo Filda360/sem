@@ -1,24 +1,40 @@
+import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import Cookies from "universal-cookie";
+
+
 function NavBar() {
+
+    const cookies = new Cookies();
+
+    const onClickOdhlasit = () => {
+        cookies.remove("JWT");
+        cookies.remove("user");
+    }
+
     return<>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container-fluid">
-                <a className="navbar-brand" href="/Home">Home</a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="/VytvoritRezervaci">Vytvořit rezervaci</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/MojeRezervace">Moje Rezervace</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Container>
+                <Navbar.Brand href="/Home">Domů</Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="me-auto">
+                        <Nav.Link href="/VytvoritRezervaci">Rezervace mist</Nav.Link>
+                        { cookies.get("user") && (<Nav.Link href="/MojeRezervace">Moje rezervace</Nav.Link>)}
+                    </Nav>
+                    <Nav>
+                        {cookies.get("JWT") ? (
+                            <>
+                                <Nav.Link href="/MojeUdaje">Moje udaje</Nav.Link>
+                                <Nav.Link href="/Home" onClick={onClickOdhlasit}>Odhlásit</Nav.Link>
+                            </>
+                        ):(
+                            <Nav.Link href="/Prihlaseni">Přihlásit se</Nav.Link>
+                        )}
+
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     </>
 }
 

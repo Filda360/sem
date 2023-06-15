@@ -30,6 +30,10 @@ public class RezervaceService {
         return rezervaceRepository.findRezervacesByUzivatel_Username(username, pageable);
     }
 
+    public List<Rezervace> findAllByUzivatel(String username){
+        return rezervaceRepository.findAllByUzivatel_Jmeno(username);
+    }
+
     public Optional<Rezervace> findByUser(Long userId){
         return rezervaceRepository.findById(userId);
     }

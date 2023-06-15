@@ -52,22 +52,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //http.authorizeRequests().anyRequest().permitAll();
-
-//        http.authorizeRequests().anyRequest().authenticated();
-//
-//
-//        http.formLogin();
-//        http.httpBasic();
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint).and()
-                .authorizeRequests((request) -> request.antMatchers("/login", "/registration").permitAll()
+                .authorizeRequests((request) -> request.antMatchers("/login/**", "/registration").permitAll()
                         .antMatchers(HttpMethod.GET, "/reviry").permitAll()
 
                         .antMatchers(HttpMethod.GET, "/mista").permitAll()
 
-                        .antMatchers(HttpMethod.GET, "/rezervace").hasAnyAuthority("USER", "ADMIN")
+                        .antMatchers(HttpMethod.GET, "/rezervace/user").hasAnyAuthority("USER", "ADMIN")
                         .antMatchers(HttpMethod.POST, "/rezervace").hasAnyAuthority("USER", "ADMIN")
 
                         .antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().hasAuthority("ADMIN"))

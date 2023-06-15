@@ -59,6 +59,7 @@ public class JWTTokenHelper{
         return Jwts.builder()
                 .setIssuer( appName )
                 .setSubject(username)
+                //.claim("role", "ADMIN")
                 .setIssuedAt(new Date())
                 .setExpiration(generateExpirationDate())
                 .signWith( SIGNATURE_ALGORITHM, secretKey )

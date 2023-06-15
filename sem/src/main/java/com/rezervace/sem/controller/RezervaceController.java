@@ -1,5 +1,6 @@
 package com.rezervace.sem.controller;
 
+import com.rezervace.sem.dto.RevirOutputDtoAll;
 import com.rezervace.sem.dto.RezervaceInputDto;
 import com.rezervace.sem.dto.RezervaceOutputDtoAll;
 import com.rezervace.sem.exception.ResourceNotFoundException;
@@ -15,9 +16,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -84,6 +87,15 @@ public class RezervaceController {
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity dejRezervaceUzivatele(Principal user){
+        var result = rezervaceService.findAllByUzivatel(user.getName());
+        if (result.isEmpty()) {
+            throw new ResourceNotFoundException();
+        }
+        return ResponseEntity.ok(result.stream().map(rezervace -> modelMapper.map(rezervace, RezervaceOutputDtoAll.class)).collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")
