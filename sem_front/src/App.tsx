@@ -4,6 +4,8 @@ import VytvoritRezervaci from "./pages/VytvoritRezervaci";
 import MojeRezervace from "./pages/MojeRezervace";
 import Home from "./pages/Home";
 import Prihlaseni from "./pages/Prihlaseni";
+import MojeUdaje from "./pages/MojeUdaje";
+import NovaRezervace from "./pages/NovaRezervace";
 
 
 function App() {
@@ -15,12 +17,18 @@ function App() {
         case "/MojeRezervace":
             component = <MojeRezervace/>
             break
-        case "/Home":
+        case "/":
             component = <Home/>
             break
         case "/Prihlaseni":
             component = <Prihlaseni/>
             break
+        case "/MojeUdaje":
+            component = <MojeUdaje/>
+            break;
+        case "/NovaRezervace":
+            component = <NovaRezervace/>
+            break;
     }
     return <>
         <NavBar/>

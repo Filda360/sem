@@ -38,7 +38,7 @@ function Prihlaseni() {
         if (res) {
             const user = await res.data;
             cookies.set("user", user);
-            window.location.replace('http://localhost:5173/Home');
+            window.location.replace('http://localhost:5173/');
         }
     }
 
@@ -58,8 +58,9 @@ function Prihlaseni() {
                            className="form-control"/>
                     <label className="form-label" htmlFor="form2Example2">Heslo</label>
                 </div>
-                <button type="button" onClick={getJWT} className="btn btn-primary btn-block mb-4">Přihlásit se</button>
+                <button type="button" onClick={getJWT} className="btn btn-success btn-block mb-4">Přihlásit se</button>
             </form>
+            <button type="button" className="btn btn-success btn-block mb-4">Registrace</button>
         </div>
     </>
 }

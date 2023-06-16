@@ -14,7 +14,7 @@ function NavBar() {
     return<>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand href="/Home">Domů</Navbar.Brand>
+                <Navbar.Brand href="/">Domů</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
@@ -25,7 +25,7 @@ function NavBar() {
                         {cookies.get("JWT") ? (
                             <>
                                 <Nav.Link href="/MojeUdaje">Moje udaje</Nav.Link>
-                                <Nav.Link href="/Home" onClick={onClickOdhlasit}>Odhlásit</Nav.Link>
+                                <Nav.Link href="/" onClick={onClickOdhlasit}>Odhlásit</Nav.Link>
                             </>
                         ):(
                             <Nav.Link href="/Prihlaseni">Přihlásit se</Nav.Link>

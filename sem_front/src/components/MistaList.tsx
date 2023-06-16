@@ -37,6 +37,7 @@ function MistaList({revir}: Props) {
 
     const clickRezervovatHandler = (index: number) => {
         console.log(mista[index].nazev);
+        window.location.replace('http://localhost:5173/NovaRezervace');
     }
 
     return <>
