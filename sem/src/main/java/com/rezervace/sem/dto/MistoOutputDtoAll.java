@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MistoOutputDtoAll {
+
+    private Long id;
     private String nazev;
 
     private Integer cena;

@@ -10,6 +10,7 @@ import javax.persistence.Column;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UzivatelOutputDtoAll {
+    private Long id;
     private String jmeno;
 
     private String prijmeni;

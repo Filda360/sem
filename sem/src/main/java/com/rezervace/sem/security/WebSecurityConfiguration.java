@@ -57,11 +57,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(authenticationEntryPoint).and()
                 .authorizeRequests((request) -> request.antMatchers("/login/**", "/registration").permitAll()
                         .antMatchers(HttpMethod.GET, "/reviry").permitAll()
-
                         .antMatchers(HttpMethod.GET, "/mista").permitAll()
-
+                        .antMatchers(HttpMethod.GET, "/uzivatele").permitAll()
                         .antMatchers(HttpMethod.GET, "/rezervace/user").hasAnyAuthority("USER", "ADMIN")
+                        .antMatchers(HttpMethod.GET, "/rezervace/misto").hasAnyAuthority("USER", "ADMIN")
+
                         .antMatchers(HttpMethod.POST, "/rezervace").hasAnyAuthority("USER", "ADMIN")
+
+                        .antMatchers(HttpMethod.PUT, "/uzivatele").hasAnyAuthority("USER", "ADMIN")
+
+                        .antMatchers(HttpMethod.POST, "/uzivatele").permitAll()
 
                         .antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().hasAuthority("ADMIN"))
                 .addFilterBefore(new JWTAuthenticationFilter(userService, jwtTokenHelper),

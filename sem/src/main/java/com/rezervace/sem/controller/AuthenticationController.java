@@ -59,6 +59,7 @@ public class AuthenticationController {
         CustomUserDetails userObj=(CustomUserDetails) userDetailsService.loadUserByUsername(user.getName());
 
         UzivatelOutputDtoAll userInfo=new UzivatelOutputDtoAll();
+        userInfo.setId(userObj.getId());
         userInfo.setJmeno(userObj.getJmeno());
         userInfo.setPrijmeni(userObj.getPrijmeni());
         userInfo.setUsername(userObj.getUsername());

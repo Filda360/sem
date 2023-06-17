@@ -1,8 +1,10 @@
 
 export interface UzivatelData {
-    jmeno: String;
-
-    prijmeni: String;
-
-    username: String ;
+    firstName: string;
+    lastName: string;
+    address: string;
+    phone: string;
+    email: string;
+    username: string;
+    password: string;
 }

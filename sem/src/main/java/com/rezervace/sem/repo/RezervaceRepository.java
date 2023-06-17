@@ -15,5 +15,7 @@ import java.util.Optional;
 public interface RezervaceRepository extends PagingAndSortingRepository<Rezervace, Long> {
     public Page<Rezervace> findRezervacesByUzivatel_Username(String username, Pageable pageable);
 
-    public List<Rezervace> findAllByUzivatel_Jmeno(String username);
+    public List<Rezervace> findAllByUzivatel_Username(String username);
+
+    public List<Rezervace> findAllByMisto_NazevAndMisto_Revir_Nazev(String misto, String revir);
 }

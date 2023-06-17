@@ -1,7 +1,6 @@
 import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import Cookies from "universal-cookie";
 
-
 function NavBar() {
 
     const cookies = new Cookies();

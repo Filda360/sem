@@ -1,21 +1,18 @@
 import UserForm from "../components/UserForm";
+import React from "react";
+import bcrypt from "bcryptjs";
 import {UzivatelData} from "../data/UzivatelData";
 import axios from "axios";
-import bcrypt from "bcryptjs";
-import Cookies from "universal-cookie";
-import React from "react";
 
 const onFormSubmit = (data: UzivatelData) => {
-    updateUser(data);
+    saveUser(data);
 }
 
-const cookies = new Cookies();
-
-const updateUser = async (formData: UzivatelData) => {
+const saveUser = async (formData: UzivatelData) => {
     const backendUrl = "http://localhost:8080/uzivatele";
     let res = null;
     try {
-        res = await axios.put(backendUrl,
+        res = await axios.post(backendUrl,
             {jmeno: formData.firstName,
                 prijmeni: formData.lastName,
                 username: formData.username,
@@ -23,15 +20,12 @@ const updateUser = async (formData: UzivatelData) => {
                 adresa: formData.address,
                 email: formData.email,
                 telefon: formData.phone
-            },
-            {headers: {'Authorization': "Bearer " + cookies.get("JWT")}}
+            }
         );
     } catch (e: any) {
-        console.log("Error upadting user !");
+        console.log("Error creating user !");
     }
     if (res) {
-        cookies.remove("user");
-        cookies.remove("JWT");
         window.location.replace('http://localhost:5173/Prihlaseni');
     }
 }
@@ -52,12 +46,12 @@ const encodeText = async (text: string) => {
     }
 };
 
-function MojeUdaje(){
+function Registrace(){
     return <>
-        <br/>
-        <h1>Údaje uživatele</h1>
-        <UserForm onSubmit={onFormSubmit}/>
+            <br/>
+        <h1>Registrace uživatele</h1>
+    <UserForm onSubmit={onFormSubmit}/>
     </>
 }
 
-export default MojeUdaje
+export default Registrace

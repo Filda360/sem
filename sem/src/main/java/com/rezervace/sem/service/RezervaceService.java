@@ -7,8 +7,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 public class RezervaceService {
@@ -31,7 +34,16 @@ public class RezervaceService {
     }
 
     public List<Rezervace> findAllByUzivatel(String username){
-        return rezervaceRepository.findAllByUzivatel_Jmeno(username);
+        return rezervaceRepository.findAllByUzivatel_Username(username);
+    }
+
+    public List<LocalDate> findAllReservedDaysByMisto(String nazev, String revir){
+        List<Rezervace> rezervace = rezervaceRepository.findAllByMisto_NazevAndMisto_Revir_Nazev(nazev, revir);
+        List<LocalDate> rezervovaneDny = new ArrayList<>();
+        for(int i = 0; i < rezervace.size(); i++) {
+            rezervovaneDny.addAll(getDatesBetweenStartEnd(rezervace.get(i).getZacatek().toLocalDate(), rezervace.get(i).getKonec().toLocalDate()));
+        }
+        return rezervovaneDny;
     }
 
     public Optional<Rezervace> findByUser(Long userId){
@@ -58,5 +70,18 @@ public class RezervaceService {
         stary.setUzivatel(novaRezervace.getUzivatel());
         rezervaceRepository.save(stary);
         return stary;
+    }
+
+    private List<LocalDate> getDatesBetweenStartEnd(
+            LocalDate startDate, LocalDate endDate) {
+        if (startDate.equals(endDate)) return Collections.singletonList(startDate);
+        long numOfDaysBetween = ChronoUnit.DAYS.between(startDate, endDate);
+        List<LocalDate> dny = IntStream.iterate(0, i -> i + 1)
+                .limit(numOfDaysBetween)
+                .mapToObj(i -> startDate.plusDays(i))
+                .collect(Collectors.toList());
+        dny.add(startDate);
+        dny.add(endDate);
+        return dny;
     }
 }

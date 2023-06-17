@@ -44,6 +44,7 @@ public class RezervaceController {
     @PostMapping
     public void pridejRezervaci(@Valid @RequestBody RezervaceInputDto rezervaceNova) {
         Rezervace rez = modelMapper.map(rezervaceNova, Rezervace.class);
+        rez.setStavPlatby(false);
         rezervaceService.create(rez);
     }
 
@@ -96,6 +97,15 @@ public class RezervaceController {
             throw new ResourceNotFoundException();
         }
         return ResponseEntity.ok(result.stream().map(rezervace -> modelMapper.map(rezervace, RezervaceOutputDtoAll.class)).collect(Collectors.toList()));
+    }
+
+    @GetMapping("/misto")
+    public ResponseEntity dejVsechnyRezervovaneDnyMista(
+            @RequestParam(name = "misto") String misto,
+            @RequestParam(name = "revir") String revir
+    ){
+        var result = rezervaceService.findAllReservedDaysByMisto(misto, revir);
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/{id}")

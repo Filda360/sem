@@ -38,6 +38,7 @@ function Prihlaseni() {
         if (res) {
             const user = await res.data;
             cookies.set("user", user);
+            console.log(user.id);
             window.location.replace('http://localhost:5173/');
         }
     }
@@ -48,19 +49,28 @@ function Prihlaseni() {
         <div className="col-md-5 mx-auto">
             <form>
                 <div className="form-outline mb-4">
-                    <input name="username" onChange={handleChange} type="input" id="form2Example1"
-                           className="form-control"/>
+                    <input
+                        name="username"
+                        onChange={handleChange}
+                        type="input"
+                        id="form2Example1"
+                        className="form-control"
+                    />
                     <label className="form-label" htmlFor="form2Example1">Přihlašovací jméno</label>
                 </div>
 
                 <div className="form-outline mb-4">
-                    <input name="password" onChange={handleChange} type="password" id="form2Example2"
-                           className="form-control"/>
+                    <input
+                        name="password"
+                        onChange={handleChange}
+                        type="password"
+                        id="form2Example2"
+                        className="form-control"/>
                     <label className="form-label" htmlFor="form2Example2">Heslo</label>
                 </div>
                 <button type="button" onClick={getJWT} className="btn btn-success btn-block mb-4">Přihlásit se</button>
             </form>
-            <button type="button" className="btn btn-success btn-block mb-4">Registrace</button>
+            <button type="button" onClick={() => window.location.replace('http://localhost:5173/Registrace')} className="btn btn-success btn-block mb-4">Registrace</button>
         </div>
     </>
 }

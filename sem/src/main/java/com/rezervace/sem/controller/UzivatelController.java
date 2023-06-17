@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.stream.Collectors;
 
 @RestController
@@ -27,7 +28,7 @@ public class UzivatelController {
     @PostMapping
     public void pridejUzivatele(@Valid @RequestBody UzivatelInputDto uzivatel){
         Uzivatel uz = modelMapper.map(uzivatel, Uzivatel.class);
-        uz.setRole("rybar");
+        uz.setRole("USER");
         uzivatelService.create(uz);
     }
 
@@ -50,10 +51,11 @@ public class UzivatelController {
         uzivatelService.delete(id);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity replaceUser(@RequestBody UzivatelInputDto uzivatel, @PathVariable Long id) {
-        Uzivatel uz = modelMapper.map(uzivatel, Uzivatel.class);
-        var result = uzivatelService.update(id, uz);
+    @PutMapping
+    public ResponseEntity replaceUser(@RequestBody UzivatelInputDto uzivatel, Principal user) {
+        Uzivatel uzStary= uzivatelService.findByUsername(user.getName());
+        Uzivatel uzNovy = modelMapper.map(uzivatel, Uzivatel.class);
+        var result = uzivatelService.update(uzStary.getId(), uzNovy);
         return ResponseEntity.status(HttpStatus.OK).body(modelMapper.map(result, UzivatelOutputDtoAll.class));
     }
 

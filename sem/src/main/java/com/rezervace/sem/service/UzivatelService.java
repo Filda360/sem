@@ -15,6 +15,8 @@ public class UzivatelService {
         this.uzivatelRepository = uzivatelRepository;
     }
 
+    public Uzivatel findByUsername(String username){return uzivatelRepository.findByUsername(username);}
+
     public Optional<Uzivatel> findById(Long id){
         return uzivatelRepository.findById(id);
     }
@@ -32,7 +34,7 @@ public class UzivatelService {
     }
 
     public Uzivatel update(long id, Uzivatel novyUzivatel){
-        Uzivatel stary = uzivatelRepository.findById(id).get(); //TODO
+        Uzivatel stary = uzivatelRepository.findById(id).get();
         stary.setJmeno(novyUzivatel.getJmeno());
         stary.setPrijmeni(novyUzivatel.getPrijmeni());
         stary.setAdresa(novyUzivatel.getAdresa());

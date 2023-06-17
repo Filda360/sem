@@ -2,6 +2,8 @@ import {RevirData} from "../data/RevirData";
 import {MistoData} from "../data/MistoData";
 import axios from "axios";
 import {useEffect, useState} from "react";
+import Cookies from "universal-cookie";
+import {useNavigate} from "react-router-dom";
 
 interface Props {
     revir: RevirData | undefined
@@ -9,6 +11,10 @@ interface Props {
 
 function MistaList({revir}: Props) {
     const [mista, setMista] = useState<MistoData[]>([]);
+
+    const cookies = new Cookies();
+
+    const navigate = useNavigate();
 
     const getMista = async () => {
         var backendUrl = ""
@@ -37,7 +43,13 @@ function MistaList({revir}: Props) {
 
     const clickRezervovatHandler = (index: number) => {
         console.log(mista[index].nazev);
-        window.location.replace('http://localhost:5173/NovaRezervace');
+        if(cookies.get("user")){
+            //window.location.replace('http://localhost:5173/NovaRezervace');
+            navigate('NovaRezervace',{ state: { idMista: mista[index].id, nazevMista: mista[index].nazev, cenaZaNoc: mista[index].cena, nazevReviru: mista[index].revir.nazev } });
+        }else{
+            window.location.replace('http://localhost:5173/Prihlaseni');
+        }
+
     }
 
     return <>

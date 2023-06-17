@@ -1,13 +1,23 @@
 import React, {useState} from 'react';
+import Cookies from "universal-cookie";
+import bcrypt from 'bcryptjs';
+import axios from "axios";
+import {UzivatelData} from "../data/UzivatelData";
 
-function UserForm() {
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        address: '',
-        phone: '',
-        email: '',
-        username: '',
+interface Props {
+    onSubmit: (data: UzivatelData) => void;
+}
+function UserForm(props: Props) {
+
+    const cookies = new Cookies();
+
+    const [formData, setFormData] = useState<UzivatelData>({
+        firstName: cookies.get("user")?.jmeno,
+        lastName: cookies.get("user")?.prijmeni,
+        address: cookies.get("user")?.adresa,
+        phone: cookies.get("user")?.telefon,
+        email: cookies.get("user")?.email,
+        username: cookies.get("user")?.username,
         password: '',
     });
 
@@ -17,15 +27,16 @@ function UserForm() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Zde můžete provést další akce s odeslanými daty, například je odeslat na server
-        console.log(formData);
+        const updatedData: UzivatelData = {
+            ...formData
+        };
+        props.onSubmit(updatedData);
     };
+
 
     return (
         <>
             <div className="col-md-5 mx-auto">
-                <br/>
-                <h1>Údaje uživatele</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="firstName">Jméno</label>
@@ -112,7 +123,7 @@ function UserForm() {
                         />
                     </div>
                     <br/>
-                    <button type="submit" className="btn btn-success btn-block mb-4">Registrovat</button>
+                    <button type="submit" className="btn btn-success btn-block mb-4">{cookies.get("user") ? "Uložit" : "Zaregistrovat"}</button>
                 </form>
             </div>
         </>
