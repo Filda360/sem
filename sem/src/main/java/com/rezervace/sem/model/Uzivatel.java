@@ -32,7 +32,8 @@ public class Uzivatel {
     @Column
     private String password;
 
-    @OneToMany(mappedBy = "uzivatel", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "uzivatel", cascade = CascadeType.ALL)
     //@JsonBackReference("uzivatel")
     private Set<Rezervace> rezervace;
+
 }

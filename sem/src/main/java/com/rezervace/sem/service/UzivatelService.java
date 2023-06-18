@@ -1,7 +1,9 @@
 package com.rezervace.sem.service;
 
 import com.rezervace.sem.model.Uzivatel;
+import com.rezervace.sem.repo.RezervaceRepository;
 import com.rezervace.sem.repo.UzivatelRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,6 +32,7 @@ public class UzivatelService {
     }
 
     public void delete(long id){
+        uzivatelRepository.deleteUserReservations(id);
         uzivatelRepository.deleteById(id);
     }
 

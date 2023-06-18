@@ -1,5 +1,6 @@
 package com.rezervace.sem.controller;
 
+import com.rezervace.sem.dto.MistaAndNumberOfPageDto;
 import com.rezervace.sem.dto.MistoInputDto;
 import com.rezervace.sem.dto.MistoOutputDtoAll;
 import com.rezervace.sem.dto.RevirOutputDtoAll;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,24 +49,15 @@ public class MistoController {
     }
 
     @GetMapping
-    public ResponseEntity dejVsechnyMista(
+    public ResponseEntity<?> dejVsechnyMista(
             @RequestParam(name = "revir", required = false) String revir,
             @RequestParam(name = "page", defaultValue = "0") int page,
-            @RequestParam(name = "size", defaultValue = "3") int size,
-            @RequestParam(name = "sort", defaultValue = "nazev") String[] sort) {
+            @RequestParam(name = "size", defaultValue = "4") int size,
+            @RequestParam(name = "sort", defaultValue = "nazev") String sort) {
         try {
             List<Order> orders = new ArrayList<Order>();
 
-            if (sort[0].contains(",")) {
-                // will sort more than 2 fields
-                // sortOrder="field, direction"
-                for (String sortOrder : sort) {
-                    orders.add(new Order(Sort.Direction.ASC, sortOrder));
-                }
-            } else {
-                // sort=[field, direction]
-                orders.add(new Order(Sort.Direction.ASC, sort[0]));
-            }
+            orders.add(new Order(Sort.Direction.ASC, sort));
 
             List<Misto> mista = new ArrayList<Misto>();
             Pageable pagingSort = PageRequest.of(page, size, Sort.by(orders));
@@ -76,12 +69,14 @@ public class MistoController {
                 pageTuts = mistoService.findByRevir(revir, pagingSort);
 
             mista = pageTuts.getContent();
+            int totalPages = pageTuts.getTotalPages();
 
             if (mista.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
-            return ResponseEntity.ok(mista.stream().map(misto -> modelMapper.map(misto, MistoOutputDtoAll.class)).collect(Collectors.toList()));
+            MistaAndNumberOfPageDto response = new MistaAndNumberOfPageDto(mista.stream().map(misto -> modelMapper.map(misto, MistoOutputDtoAll.class)).collect(Collectors.toList()), totalPages);
+            return ResponseEntity.ok(response);
 
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

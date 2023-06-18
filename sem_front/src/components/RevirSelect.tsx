@@ -6,39 +6,37 @@ interface Props {
     onSelectRevir: (revir: RevirData) => void
 }
 
-function RevirSelect({onSelectRevir}: Props) {
-
+function RevirSelect({ onSelectRevir }: Props) {
     const [reviry, setReviry] = useState<RevirData[]>([]);
 
     const getReviry = async () => {
         const backendUrl = "http://localhost:8080/reviry";
-        let res = null;
         try {
-            res = await axios.get(backendUrl);
+            const res = await axios.get(backendUrl);
+            const reviry = res.data;
+            setReviry(reviry);
+            onSelectRevir(reviry[0]); // Zavolat onSelectRevir s prvním revírem po načtení
         } catch (e: any) {
             setReviry([]);
-        }
-        if (res) {
-            const reviry = await res.data;
-            setReviry(reviry);
         }
     }
 
     useEffect(() => {
-            getReviry()
-        }, []
-    )
+        getReviry();
+    }, []);
 
     const changeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         onSelectRevir(reviry[parseInt(event.target.value)]);
     }
 
-    return <>
-        <select className="form-select form-select-lg mb-4" aria-label=".form-select-lg example"
-                onChange={changeHandler} defaultValue={0}>
-            {reviry.map((revir, index) => (<option key={index} value={index}>Revír: {revir.nazev}</option>))}
-        </select>
-    </>
+    return (
+        <>
+            <select className="form-select form-select-lg mb-4" aria-label=".form-select-lg example"
+                    onChange={changeHandler} defaultChecked={true} defaultValue={0}>
+                {reviry.map((revir, index) => (<option key={index} value={index}>Revír: {revir.nazev}</option>))}
+            </select>
+        </>
+    );
 }
 
-export default RevirSelect
+export default RevirSelect;

@@ -35,6 +35,7 @@ public class MistoService {
     }
 
     public void delete(long id) {
+        mistoRepository.deleteMistoReservations(id);
         mistoRepository.deleteById(id);
     }
 

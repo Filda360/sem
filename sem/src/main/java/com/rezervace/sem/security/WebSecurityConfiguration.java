@@ -68,6 +68,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                         .antMatchers(HttpMethod.POST, "/uzivatele").permitAll()
 
+                        .antMatchers(HttpMethod.DELETE, "/rezervace/user/**").hasAnyAuthority("USER", "ADMIN")
+
                         .antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().hasAuthority("ADMIN"))
                 .addFilterBefore(new JWTAuthenticationFilter(userService, jwtTokenHelper),
                         UsernamePasswordAuthenticationFilter.class);

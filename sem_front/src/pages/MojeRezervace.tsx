@@ -1,11 +1,14 @@
+
+import React from "react";
 import ReservationsList from "../components/ReservationsList";
 
+function MojeRezervace() {
 
-function MojeRezervace(){
-    return<>
-    <h1>Moje rezervace</h1>
-        <ReservationsList/>
-    </>
+    return (
+        <>
+            <ReservationsList/>
+        </>
+    );
 }
 
-export default MojeRezervace
+export default MojeRezervace;

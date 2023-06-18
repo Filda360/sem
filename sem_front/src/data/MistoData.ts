@@ -3,13 +3,13 @@ import {RevirData} from "./RevirData";
 export interface MistoData {
 
     id: number
-    nazev: String
+    nazev: string
     cena: number
     maxPocetRybaru: number
 
-    popis: String
+    popis: string
 
-    obrazek: String;
+    obrazek: string;
 
     revir: RevirData;
 }

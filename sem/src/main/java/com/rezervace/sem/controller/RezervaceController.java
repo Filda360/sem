@@ -20,9 +20,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.InvalidParameterException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -118,15 +120,28 @@ public class RezervaceController {
         return ResponseEntity.ok(modelMapper.map(result.get(), RezervaceOutputDtoAll.class));
     }
 
+    @DeleteMapping("/user/{id}")
+    void smazRezervaciUzivatele(@PathVariable(name = "id") Long id, Principal user) {
+        Optional<Rezervace> rez = rezervaceService.findById(id);
+        if(!rez.get().getUzivatel().getUsername().equals(user.getName())) throw new InvalidParameterException();
+        rezervaceService.delete(id);
+    }
+
     @DeleteMapping("/{id}")
-    void smazRezervaci(@PathVariable Long id) {
+    void smazRezervaci(@PathVariable(name = "id") Long id, Principal user) {
         rezervaceService.delete(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity upravRezervaci(@RequestBody RezervaceInputDto rezervaceNova, @PathVariable Long id) {
-        Rezervace rez = modelMapper.map(rezervaceNova, Rezervace.class);
-        var result = rezervaceService.update(id, rez);
-        return ResponseEntity.status(HttpStatus.OK).body(modelMapper.map(result, RezervaceOutputDtoAll.class));
+    public ResponseEntity nastavStavPlatby(@RequestBody Boolean stav, @PathVariable Long id) {
+        Optional<Rezervace> rez = rezervaceService.findById(id);
+        if(rez.isPresent()) {
+            rez.get().setStavPlatby(stav);
+            var result = rezervaceService.update(id, rez.get());
+            return ResponseEntity.status(HttpStatus.OK).body(modelMapper.map(result, RezervaceOutputDtoAll.class));
+        }else {
+            throw new ResourceNotFoundException();
+        }
+
     }
 }

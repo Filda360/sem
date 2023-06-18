@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RezervaceOutputDtoAll {
+    private Long id;
     private LocalDateTime zacatek;
 
     private LocalDateTime konec;
