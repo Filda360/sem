@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import Cookies from "universal-cookie";
-import bcrypt from 'bcryptjs';
-import axios from "axios";
 import {UzivatelData} from "../data/UzivatelData";
 
 interface Props {
@@ -12,12 +10,13 @@ function UserForm(props: Props) {
     const cookies = new Cookies();
 
     const [formData, setFormData] = useState<UzivatelData>({
-        firstName: cookies.get("user")?.jmeno,
-        lastName: cookies.get("user")?.prijmeni,
-        address: cookies.get("user")?.adresa,
-        phone: cookies.get("user")?.telefon,
-        email: cookies.get("user")?.email,
-        username: cookies.get("user")?.username,
+        id: 0,
+        jmeno: "",
+        prijmeni: '',
+        adresa: '',
+        telefon: '',
+        email: '',
+        username: '',
         password: '',
     });
 
@@ -45,7 +44,7 @@ function UserForm(props: Props) {
                             className="form-control"
                             id="firstName"
                             name="firstName"
-                            value={formData.firstName}
+                            value={cookies.get("user")?.jmeno}
                             onChange={handleChange}
                             required
                         />
@@ -57,7 +56,7 @@ function UserForm(props: Props) {
                             className="form-control"
                             id="lastName"
                             name="lastName"
-                            value={formData.lastName}
+                            value={cookies.get("user")?.prijmeni}
                             onChange={handleChange}
                             required
                         />
@@ -69,7 +68,7 @@ function UserForm(props: Props) {
                             className="form-control"
                             id="address"
                             name="address"
-                            value={formData.address}
+                            value={cookies.get("user")?.adresa}
                             onChange={handleChange}
                             required
                         />
@@ -81,7 +80,7 @@ function UserForm(props: Props) {
                             className="form-control"
                             id="phone"
                             name="phone"
-                            value={formData.phone}
+                            value={cookies.get("user")?.telefon}
                             onChange={handleChange}
                             required
                         />
@@ -93,7 +92,7 @@ function UserForm(props: Props) {
                             className="form-control"
                             id="email"
                             name="email"
-                            value={formData.email}
+                            value={cookies.get("user")?.email}
                             onChange={handleChange}
                             required
                         />
@@ -105,7 +104,7 @@ function UserForm(props: Props) {
                             className="form-control"
                             id="username"
                             name="username"
-                            value={formData.username}
+                            value={cookies.get("user")?.username}
                             onChange={handleChange}
                             required
                         />

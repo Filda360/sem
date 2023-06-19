@@ -1,9 +1,10 @@
 
 export interface UzivatelData {
-    firstName: string;
-    lastName: string;
-    address: string;
-    phone: string;
+    id: number;
+    jmeno: string;
+    prijmeni: string;
+    adresa: string;
+    telefon: string;
     email: string;
     username: string;
     password: string;

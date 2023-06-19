@@ -19,6 +19,7 @@ function NavBar() {
                     <Nav className="me-auto">
                         <Nav.Link href="/Mista">Místa</Nav.Link>
                         { cookies.get("user") && (<Nav.Link href="/MojeRezervace">Rezervace</Nav.Link>)}
+                        { cookies.get("user")?.role === "ADMIN" && (<Nav.Link href="/Uzivatele">Uzivatele</Nav.Link>)}
                     </Nav>
                     <Nav>
                         {cookies.get("JWT") ? (

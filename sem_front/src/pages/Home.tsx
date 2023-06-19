@@ -17,13 +17,15 @@ function Home() {
                 <div className="text-center pb-5">
                     <h2>Vítejte na našich stránkách</h2>
                     <p className="lead">
-                        Prostředí okolo soukromého revíru rybník Velké Hrázky nabízí naprostý klid a pohodu. Okolo rybníku roste hustá vegetace, která rybářům poskytuje ty nejlepší podmínky pro odpočinek a pohodový rybolov. Navíc břehy okolo soukromého revíru rybník Velké Hrázky jsou příjemně travnaté a je z nich velice dobrý přístup až k vodě.
+                        Rybník Velký a Rybník Malý jsou opravdovým rájem pro vášnivé rybáře.
+                        Obklopené malebnou krajinou a klidem přírody, tyto revíry nabízejí úžasnou možnost relaxace a odpočinku u vody.
+                        Voda je zde křišťálově čistá a rybí bohatství je skutečně ohromující.
                     </p>
                     <p className="lead">
-                        Na soukromém revíru rybník Velké Hrázky si mohou rybáři zachytat za velice příznivé ceny. Na revíru rybník Velké Hrázky mohou rybáři lovit 24 hodin. Návštěvníci tohoto soukromého revíru jistě ocení i řadu dalších příjemných služeb, které zpohodlní celý lov.
+                        Naše rezervace vám umožňuje zarezervovat si rybářské místo na vybraném revíru, abyste mohli naplno vychutnat svou vášeň. Bez ohledu na to, zda jste začátečníkem nebo zkušeným rybářem, naše revíry jsou vhodné pro všechny úrovně dovedností. Jsme tu proto, abychom vám poskytli nezapomenutelné rybářské zážitky a zabezpečili, aby vaše návštěva byla plná radosti a úspěchů.
                     </p>
                     <p className="lead">
-                        Rybník Velké Hrázky je velice dobře zarybněný. Rybáři tady mohou ulovit celou řadu rybích druhů nejrůznějších velikostí. Na tomto revíru pochopitelně nechybí ani kapitální ryby. Rybáři tady mohou ulovit například nádherné kapry, amury nebo jesetery. Takže už na nic nečekejte a přijeďte si sem zachytat!
+                        Doufáme, že vám naše rezervace na revírech Rybník Velký a Rybník Malý přinese mnoho nezapomenutelných momentů rybaření. Pokud máte nějaké otázky nebo potřebujete další informace, neváhejte nás kontaktovat. Jsme tu, abychom vám pomohli a zajišťovali vaše spokojenost. Užijte si svůj čas u vody a těšíme se na vaši návštěvu!
                     </p>
                 </div>
                 <Image src="https://drive.google.com/uc?export=view&id=1OBRSBjmVTaA61HilhwBiWOsZVg6EUj_a" alt="Rybník" fluid className="mb-4" />

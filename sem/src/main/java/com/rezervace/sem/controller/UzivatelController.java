@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -48,13 +49,19 @@ public class UzivatelController {
 
     @DeleteMapping("/{id}")
     void deleteUser(@PathVariable Long id) {
-        uzivatelService.delete(id);
+        Optional<Uzivatel> uz = uzivatelService.findById(id);
+        if(uz.get().getRole().equals("ADMIN")) {
+            throw new IllegalArgumentException();
+        }else {
+            uzivatelService.delete(id);
+        }
     }
 
     @PutMapping
     public ResponseEntity replaceUser(@RequestBody UzivatelInputDto uzivatel, Principal user) {
         Uzivatel uzStary= uzivatelService.findByUsername(user.getName());
         Uzivatel uzNovy = modelMapper.map(uzivatel, Uzivatel.class);
+        if(uzStary.getRole().equals("USER")) uzNovy.setRole("USER");
         var result = uzivatelService.update(uzStary.getId(), uzNovy);
         return ResponseEntity.status(HttpStatus.OK).body(modelMapper.map(result, UzivatelOutputDtoAll.class));
     }

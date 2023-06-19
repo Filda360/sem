@@ -9,6 +9,7 @@ import NovaRezervace from "./pages/NovaRezervace";
 import {Route, Routes} from "react-router-dom";
 import Registrace from "./pages/Registrace";
 import PridatMisto from "./pages/PridatMisto";
+import Uzivatele from "./pages/Uzivatele";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/Mista/NovaRezervace" element={<NovaRezervace/>}></Route>
                 <Route path="/Registrace" element={<Registrace/>}></Route>
                 <Route path="/PridatMisto" element={<PridatMisto/>}></Route>
+                <Route path="/Uzivatele" element={<Uzivatele/>}></Route>
             </Routes>
         </div>
     </>

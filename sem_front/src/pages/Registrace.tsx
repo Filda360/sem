@@ -13,13 +13,13 @@ const saveUser = async (formData: UzivatelData) => {
     let res = null;
     try {
         res = await axios.post(backendUrl,
-            {jmeno: formData.firstName,
-                prijmeni: formData.lastName,
+            {jmeno: formData.jmeno,
+                prijmeni: formData.prijmeni,
                 username: formData.username,
                 password: await encodeText(formData.password),
-                adresa: formData.address,
+                adresa: formData.adresa,
                 email: formData.email,
-                telefon: formData.phone
+                telefon: formData.telefon
             }
         );
     } catch (e: any) {
