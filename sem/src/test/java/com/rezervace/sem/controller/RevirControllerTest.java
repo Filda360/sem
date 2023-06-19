@@ -54,7 +54,6 @@ public class RevirControllerTest {
         revir1.setId(1L);
         revir1.setNazev("Revir 1");
         revir1.setPopis("Popis 1");
-
         Revir revir2 = new Revir();
         revir2.setId(2L);
         revir2.setNazev("Revir 2");
@@ -64,6 +63,7 @@ public class RevirControllerTest {
                 revir1,
                 revir2
         );
+
         when(revirService.findAll()).thenReturn(reviry);
         when(modelMapper.map(Mockito.any(Revir.class), Mockito.any(Class.class))).thenReturn(new RevirOutputDtoAll());
         String expectedResponse = "[{\"id\": 1, \"nazev\": \"Revir 1\",\"popis\": \"Popis 1\"},{\"id\": 2, \"nazev\": \"Revir 2\",\"popis\": \"Popis 2\"}]";
@@ -73,4 +73,5 @@ public class RevirControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().json(expectedResponse, false));
     }
+
 }
