@@ -1,13 +1,11 @@
 package com.rezervace.sem.service;
 
 import com.rezervace.sem.model.Misto;
-import com.rezervace.sem.model.Revir;
 import com.rezervace.sem.repo.MistoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

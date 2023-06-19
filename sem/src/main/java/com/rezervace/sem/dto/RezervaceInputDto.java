@@ -4,9 +4,6 @@ import com.rezervace.sem.model.Misto;
 import com.rezervace.sem.model.Uzivatel;
 import lombok.*;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 

@@ -4,7 +4,6 @@ import com.rezervace.sem.model.Rezervace;
 import com.rezervace.sem.repo.RezervaceRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

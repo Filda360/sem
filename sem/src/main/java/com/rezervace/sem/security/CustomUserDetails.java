@@ -1,7 +1,6 @@
 package com.rezervace.sem.security;
 
 import com.rezervace.sem.model.Uzivatel;
-import net.bytebuddy.implementation.bind.annotation.Super;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

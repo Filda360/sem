@@ -3,7 +3,6 @@ package com.rezervace.sem.security;
 
 import com.rezervace.sem.model.Uzivatel;
 import com.rezervace.sem.repo.UzivatelRepository;
-import com.rezervace.sem.service.UzivatelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

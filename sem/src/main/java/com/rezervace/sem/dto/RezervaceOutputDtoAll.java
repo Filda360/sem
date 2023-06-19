@@ -1,8 +1,5 @@
 package com.rezervace.sem.dto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.rezervace.sem.model.Misto;
-import com.rezervace.sem.model.Uzivatel;
 import lombok.*;
 
 import java.time.LocalDateTime;

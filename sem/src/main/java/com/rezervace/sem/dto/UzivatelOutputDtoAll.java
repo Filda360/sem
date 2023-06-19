@@ -2,8 +2,6 @@ package com.rezervace.sem.dto;
 
 import lombok.*;
 
-import javax.persistence.Column;
-
 @Data
 @Getter
 @Setter

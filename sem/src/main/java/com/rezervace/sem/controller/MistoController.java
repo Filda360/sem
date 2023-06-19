@@ -9,21 +9,17 @@ import com.rezervace.sem.model.Misto;
 import com.rezervace.sem.service.MistoService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.modelmapper.spi.MatchingStrategy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,9 +27,9 @@ import java.util.stream.Collectors;
 @RequestMapping("/mista")
 @CrossOrigin(origins = {"http://localhost:5173/"})
 public class MistoController {
-    //@Autowired
+
     private ModelMapper modelMapper;
-    //@Autowired
+
     private MistoService mistoService;
 
     public MistoController(ModelMapper modelMapper, MistoService mistoService) {

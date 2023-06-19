@@ -4,8 +4,6 @@ package com.rezervace.sem.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.util.List;
 import java.util.Set;
 
 @Data
