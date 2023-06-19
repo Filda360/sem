@@ -133,7 +133,7 @@ public class RezervaceController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity nastavStavPlatby(@RequestBody Boolean stav, @PathVariable Long id) {
+    public ResponseEntity nastavStavPlatby(@RequestBody boolean stav, @PathVariable Long id) {
         Optional<Rezervace> rez = rezervaceService.findById(id);
         if(rez.isPresent()) {
             rez.get().setStavPlatby(stav);

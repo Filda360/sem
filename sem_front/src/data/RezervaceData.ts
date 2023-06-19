@@ -11,7 +11,7 @@ export interface RezervaceData{
 
     poznamka: String;
 
-    stav_platby: boolean;
+    stavPlatby: boolean;
 
     misto: MistoData;
 }

@@ -64,13 +64,13 @@ function ReservationForm(props: Props){
     const saveReservation = async () => {
         const backendUrl = "http://localhost:8080/rezervace";
         axios.post(backendUrl, {
-            zacatek: startDate?.toISOString(),
-            konec: endDate?.toISOString(),
-            pocet_rybaru: numberOfFishermen,
-            poznamka: note,
-            uzivatel: {id: cookies.get("user").id},
-            misto: {id: props.idMista}
-        }, {headers: {'Authorization': "Bearer " + cookies.get("JWT")}}
+                zacatek: startDate?.toISOString(),
+                konec: endDate?.toISOString(),
+                pocetRybaru: numberOfFishermen,
+                poznamka: note,
+                uzivatel: {id: cookies.get("user").id},
+                misto: {id: props.idMista}
+            }, {headers: {'Authorization': "Bearer " + cookies.get("JWT")}}
         )
             .then(function (response) {
                 setShowAlertSuccess(true);

@@ -21,7 +21,7 @@ public class RezervaceOutputDtoAll {
 
     private String poznamka;
 
-    private Boolean stav_platby;
+    private Boolean stavPlatby;
 
     private UzivatelOutputDtoAll uzivatel;
 

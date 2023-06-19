@@ -34,7 +34,7 @@ public class RezervaceService {
     }
 
     public List<Rezervace> findAllByUzivatel(String username){
-        return rezervaceRepository.findAllByUzivatel_Username(username);
+        return rezervaceRepository.findAllByUzivatel_UsernameOrderByZacatek(username);
     }
 
     public List<LocalDate> findAllReservedDaysByMisto(String nazev, String revir){

@@ -64,8 +64,23 @@ function ReservationsList() {
         setBackendUrl("http://localhost:8080/rezervace?username=" + username);
     }
 
-    function handleCheckboxChange(index: number) {
+    const handleCheckboxChange = (index: number) => {
+        changePayed(rezervace[index].id, rezervace[index].stavPlatby ? false:true);
+    }
 
+    const changePayed = async (id: number, stav: boolean) => {
+        let res = null;
+        try {
+            let url = "http://localhost:8080/rezervace"
+            url = url + "/" + `${id}`;
+            res = await axios.put(url, JSON.stringify(stav),
+                {headers: {'Authorization': "Bearer " + cookies.get("JWT"), "content-type": "application/json"}}); //v body pouze true/false
+        } catch (e: any) {
+            console.log("Error change payed")
+        }
+        if (res) {
+            window.location.replace("http://localhost:5173/MojeRezervace");
+        }
     }
 
     return <>
@@ -104,12 +119,16 @@ function ReservationsList() {
                 {
                     cookies.get("user").role === "USER" &&
                     <h5>
-                        { rez.stav_platby ? "ZAPLACENO" : "NEZAPLACENO"}
+                        { rez.stavPlatby ? "ZAPLACENO" : "NEZAPLACENO"}
                     </h5>
                 }
                 {
                     cookies.get("user").role === "ADMIN" &&
-                    <input type="checkbox" checked={rez.stav_platby} onChange={() => handleCheckboxChange(index)} />
+                    <>
+                        <h5>zaplaceno: </h5>
+                        <input type="checkbox" className="form-check-input" checked={rez.stavPlatby} onChange={() => handleCheckboxChange(index)}/>
+                    </>
+
                 }
                 <div>
                     <button className="btn btn-danger m-1" onClick={() => onDeleteReservation(index)}>Zrušit</button>
