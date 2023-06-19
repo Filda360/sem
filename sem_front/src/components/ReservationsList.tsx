@@ -111,10 +111,16 @@ function ReservationsList() {
                     identifkační číslo: {rez.id}
                 </h5>
                 <h5>
-                    od: {new Date(Date.parse(rez.zacatek.toString())).toLocaleDateString()}
+                    od: {new Date(Date.parse(rez.zacatek.toString())+86400000).toLocaleDateString()}
                 </h5>
                 <h5>
-                    do: {new Date(Date.parse(rez.konec.toString())).toLocaleDateString()}
+                    do: {new Date(Date.parse(rez.konec.toString())+86400000).toLocaleDateString()}
+                </h5>
+                <h5>
+                    Cena rezervace: {
+                    ((new Date(Date.parse(rez.konec.toString())+86400000).getTime() - new Date(Date.parse(rez.zacatek.toString())+86400000).getTime())
+                        / (1000 * 3600 * 24) + 1) * rez.misto.cena
+                } Kč
                 </h5>
                 {
                     cookies.get("user").role === "USER" &&

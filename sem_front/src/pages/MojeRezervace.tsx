@@ -6,6 +6,7 @@ function MojeRezervace() {
 
     return (
         <>
+            <br/>
             <ReservationsList/>
         </>
     );

@@ -11,13 +11,13 @@ function UserForm(props: Props) {
 
     const [formData, setFormData] = useState<UzivatelData>({
         id: 0,
-        jmeno: "",
-        prijmeni: '',
-        adresa: '',
-        telefon: '',
-        email: '',
-        username: '',
-        password: '',
+        jmeno: cookies.get("user") ? cookies.get("user").jmeno: "",
+        prijmeni: cookies.get("user") ? cookies.get("user").prijmeni: "",
+        adresa: cookies.get("user") ? cookies.get("user").adresa: "",
+        telefon: cookies.get("user") ? cookies.get("user").telefon: "",
+        email: cookies.get("user") ? cookies.get("user").email: "",
+        username: cookies.get("user") ? cookies.get("user").username: "",
+        password: "",
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,11 +25,9 @@ function UserForm(props: Props) {
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        console.log(formData);
         e.preventDefault();
-        const updatedData: UzivatelData = {
-            ...formData
-        };
-        props.onSubmit(updatedData);
+        props.onSubmit(formData);
     };
 
 
@@ -42,9 +40,9 @@ function UserForm(props: Props) {
                         <input
                             type="text"
                             className="form-control"
-                            id="firstName"
-                            name="firstName"
-                            value={cookies.get("user")?.jmeno}
+                            id="jmeno"
+                            name="jmeno"
+                            defaultValue={cookies.get("user")?.jmeno}
                             onChange={handleChange}
                             required
                         />
@@ -54,9 +52,9 @@ function UserForm(props: Props) {
                         <input
                             type="text"
                             className="form-control"
-                            id="lastName"
-                            name="lastName"
-                            value={cookies.get("user")?.prijmeni}
+                            id="prijmeni"
+                            name="prijmeni"
+                            defaultValue={cookies.get("user")?.prijmeni}
                             onChange={handleChange}
                             required
                         />
@@ -66,9 +64,9 @@ function UserForm(props: Props) {
                         <input
                             type="text"
                             className="form-control"
-                            id="address"
-                            name="address"
-                            value={cookies.get("user")?.adresa}
+                            id="adresa"
+                            name="adresa"
+                            defaultValue={cookies.get("user")?.adresa}
                             onChange={handleChange}
                             required
                         />
@@ -78,9 +76,9 @@ function UserForm(props: Props) {
                         <input
                             type="text"
                             className="form-control"
-                            id="phone"
-                            name="phone"
-                            value={cookies.get("user")?.telefon}
+                            id="telefon"
+                            name="telefon"
+                            defaultValue={cookies.get("user")?.telefon}
                             onChange={handleChange}
                             required
                         />
@@ -92,7 +90,7 @@ function UserForm(props: Props) {
                             className="form-control"
                             id="email"
                             name="email"
-                            value={cookies.get("user")?.email}
+                            defaultValue={cookies.get("user")?.email}
                             onChange={handleChange}
                             required
                         />
@@ -104,7 +102,7 @@ function UserForm(props: Props) {
                             className="form-control"
                             id="username"
                             name="username"
-                            value={cookies.get("user")?.username}
+                            defaultValue={cookies.get("user")?.username}
                             onChange={handleChange}
                             required
                         />
@@ -116,7 +114,7 @@ function UserForm(props: Props) {
                             className="form-control"
                             id="password"
                             name="password"
-                            value={formData.password}
+                            defaultValue={formData.password}
                             onChange={handleChange}
                             required
                         />

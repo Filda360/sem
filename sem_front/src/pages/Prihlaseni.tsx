@@ -7,6 +7,7 @@ function Prihlaseni() {
     const cookies = new Cookies();
 
     const [formData, setFormData] = useState({username: "", password: ""})
+    const [errorMessage, setErrorMessage] = useState("");
 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,6 +25,7 @@ function Prihlaseni() {
                 getUser();
             })
             .catch(function (error) {
+                setErrorMessage("Chyba při přihlašování. Zkontrolujte prosím své údaje.");
             });
     }
 
@@ -47,6 +49,11 @@ function Prihlaseni() {
     return <>
         <br/>
         <div className="col-md-5 mx-auto">
+            {errorMessage && (
+                <div className="alert alert-danger" role="alert">
+                    {errorMessage}
+                </div>
+            )}
             <form>
                 <div className="form-outline mb-4">
                     <input
