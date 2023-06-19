@@ -28,7 +28,7 @@ function Home() {
                         Doufáme, že vám naše rezervace na revírech Rybník Velký a Rybník Malý přinese mnoho nezapomenutelných momentů rybaření. Pokud máte nějaké otázky nebo potřebujete další informace, neváhejte nás kontaktovat. Jsme tu, abychom vám pomohli a zajišťovali vaše spokojenost. Užijte si svůj čas u vody a těšíme se na vaši návštěvu!
                     </p>
                 </div>
-                <Image src="https://drive.google.com/uc?export=view&id=1OBRSBjmVTaA61HilhwBiWOsZVg6EUj_a" alt="Rybník" fluid className="mb-4" />
+                <Image src="https://drive.google.com/uc?export=view&id=1ZL78UAmW5i_KrWncjSKMRe7EWckHj4sY" alt="Rybník" fluid className="mb-4 rounded-4" />
             </div>
         </>
     );

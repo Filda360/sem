@@ -116,7 +116,7 @@ function MistaList({revir}: Props) {
                 <div className="col" key={index}>
                     <div className="card h-100">
                         <img src={"https://drive.google.com/uc?export=view&id=" + misto.obrazek}
-                             className="card-img-top" alt="obrázek místa"/>
+                             className="card-img-top h-50 rounded-2" alt="obrázek místa"/>
                         <div className="card-body">
                             <h4 className="card-title">{misto.nazev}</h4>
                             <p className="card-text">{misto.popis}</p>
