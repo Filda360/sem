@@ -66,6 +66,7 @@ function ReservationsList() {
 
     const handleCheckboxChange = (index: number) => {
         changePayed(rezervace[index].id, rezervace[index].stavPlatby ? false:true);
+        handleSubmit();
     }
 
     const changePayed = async (id: number, stav: boolean) => {
