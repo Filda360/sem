@@ -31,10 +31,9 @@ import java.util.stream.Collectors;
 @RequestMapping("/rezervace")
 @CrossOrigin(origins = {"http://localhost:5173/"})
 public class RezervaceController {
-    //@Autowired
+
     private ModelMapper modelMapper;
 
-    //@Autowired
     private RezervaceService rezervaceService;
 
     public RezervaceController(ModelMapper modelMapper, RezervaceService rezervaceService) {

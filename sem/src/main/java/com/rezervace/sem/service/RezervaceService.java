@@ -80,7 +80,7 @@ public class RezervaceService {
                 .limit(numOfDaysBetween)
                 .mapToObj(i -> startDate.plusDays(i))
                 .collect(Collectors.toList());
-        dny.add(startDate);
+        //dny.add(startDate);
         dny.add(endDate);
         return dny;
     }
