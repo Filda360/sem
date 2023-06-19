@@ -1,6 +1,5 @@
 import UserList from "../components/UserList";
 
-
 function Uzivatele(){
     return <>
         <UserList/>

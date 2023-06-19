@@ -1,16 +1,9 @@
 
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { addDays } from 'date-fns';
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
 
 function Home() {
-    const [show, setShow] = React.useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     return (
         <>
             <div className="container d-flex flex-column align-items-center justify-content-center vh-100">

@@ -4,7 +4,6 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import Cookies from "universal-cookie";
 import {useNavigate} from "react-router-dom";
-import ReactPaginate from 'react-paginate';
 import {Pagination} from "react-bootstrap";
 
 interface Props {

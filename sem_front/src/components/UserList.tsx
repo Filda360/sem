@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {RezervaceData} from "../data/RezervaceData";
 import {UzivatelData} from "../data/UzivatelData";
 import axios from "axios";
 import Cookies from "universal-cookie";

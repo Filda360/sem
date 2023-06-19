@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {RezervaceData} from "../data/RezervaceData";
 import Cookies from "universal-cookie";
-import {Form} from "react-bootstrap";
 
 
 function ReservationsList() {

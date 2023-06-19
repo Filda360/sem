@@ -1,4 +1,4 @@
-import {EventHandler, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {RevirData} from "../data/RevirData";
 import axios from "axios";
 
