@@ -1,14 +1,14 @@
 package com.rezervace.sem.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rezervace.sem.dto.RevirInputDto;
 import com.rezervace.sem.dto.RevirOutputDtoAll;
 import com.rezervace.sem.model.Revir;
 import com.rezervace.sem.security.JWTTokenHelper;
 import com.rezervace.sem.service.RevirService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -21,7 +21,11 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -32,6 +36,10 @@ public class RevirControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+    @Captor
+    private ArgumentCaptor<Revir> revirCaptor;
+    @InjectMocks
+    private RevirController revirController;
     @MockBean
     private RevirService revirService;
     @MockBean
@@ -42,6 +50,8 @@ public class RevirControllerTest {
     private AuthenticationEntryPoint authenticationEntryPoint;
     @Mock
     private ModelMapper modelMapper;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @BeforeEach
     void setup() {
@@ -74,4 +84,23 @@ public class RevirControllerTest {
                 .andExpect(content().json(expectedResponse, false));
     }
 
+    void testPridejRevir() {
+        RevirInputDto inputDto = new RevirInputDto();
+        inputDto.setNazev("Revir 1");
+        inputDto.setPopis("Popis 1");
+
+        Revir expectedRevir = new Revir();
+        expectedRevir.setNazev("Revir 1");
+        expectedRevir.setPopis("Popis 1");
+
+        when(modelMapper.map(inputDto, Revir.class)).thenReturn(expectedRevir);
+
+        revirController.pridejRevir(inputDto);
+
+        verify(revirService).create(revirCaptor.capture());
+        Revir capturedRevir = revirCaptor.getValue();
+        assertNotNull(capturedRevir);
+        assertEquals("Revir 1", capturedRevir.getNazev());
+        assertEquals("Popis 1", capturedRevir.getPopis());
+    }
 }

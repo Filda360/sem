@@ -38,7 +38,7 @@ public class MistoService {
     }
 
     public Misto update(long id, Misto noveMisto) {
-        Misto stary = mistoRepository.findById(id).get(); //TODO
+        Misto stary = mistoRepository.findById(id).get();
         stary.setNazev(noveMisto.getNazev());
         stary.setCena(noveMisto.getCena());
         stary.setPopis(noveMisto.getPopis());
